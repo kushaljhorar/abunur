@@ -16,7 +16,7 @@ class MoviesViewModel(application: Application) : AndroidViewModel(application) 
     private val _movies = MutableLiveData<List<Movie>>(emptyList())
     val movies: LiveData<List<Movie>> = _movies
 
-    // 1️⃣ API → Room → UI
+
     fun getMovies() {
         viewModelScope.launch {
             try {
@@ -28,14 +28,14 @@ class MoviesViewModel(application: Application) : AndroidViewModel(application) 
         }
     }
 
-    // 2️⃣ Show All
+
     fun showAllMovies() {
         viewModelScope.launch {
             _movies.value = movieRepo.getAllMovies()
         }
     }
 
-    // 3️⃣ Filter by genre
+
     fun filterMovies(genre: String) {
         viewModelScope.launch {
             _movies.value = movieRepo.getMoviesByGenre(genre)
